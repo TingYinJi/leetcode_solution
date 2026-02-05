@@ -1,7 +1,21 @@
 class Solution {
 public:
     bool isPalindrome(int x) {
-        if(x < 0) return false;
+        if (x < 0 || (x % 10 == 0 && x != 0)) return false;
+
+        int revert= 0;
+
+        while (x > revert) {
+            revert = revert * 10 + x % 10;
+            x /= 10;
+        }
+        return x == revert || x == revert / 10;
+    }
+};
+
+// 另解：字串處理
+
+  if(x < 0) return false;
         
         string s = to_string(x);
         int left = 0, right = s.length() - 1;
@@ -12,5 +26,3 @@ public:
             right--;
         }
         return true;
-    }
-};
